@@ -562,7 +562,7 @@
 
         <h3>5. 使用者權利</h3>
         <p>
-          您可以透過 Discord 伺服器或來信 <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6beb3a7a8bfb3a7a8e8b6b4a9aca3a5b286a1aba7afaae8a5a9ab">[email&#160;protected]</a></strong> 聯繫我們，要求查詢、閱覽、補充、更正或刪除您的交易紀錄
+          您可以透過 Discord 伺服器或來信 <strong><a id="privacy-email-link"></a></strong> 聯繫我們，要求查詢、閱覽、補充、更正或刪除您的交易紀錄
           （若刪除可能導致無法提供後續補發服務）。
         </p>
 
@@ -572,12 +572,18 @@
 
 
   <script data-cfasync="false">
-    // 動態插入聯繫連結，避免 Cloudflare email 混淆破壞 script
+    // 動態插入 email，讓 Cloudflare 爬蟲掃不到明文
     (function() {
-      var u = 'xuanyuan.project';
-      var d = 'gmail.com';
-      var el = document.getElementById('contact-link');
-      if (el) { el.href = 'mailto:' + u + '@' + d; }
+      var u = 'xuanyuan' + '.' + 'project';
+      var d = 'gmail' + '.' + 'com';
+      var email = u + '@' + d;
+      var href = 'mai' + 'lto:' + email;
+
+      var c = document.getElementById('contact-link');
+      if (c) { c.href = href; c.textContent = '聯繫我們'; }
+
+      var p = document.getElementById('privacy-email-link');
+      if (p) { p.href = href; p.textContent = email; }
     })();
 
     // Open modals
