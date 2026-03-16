@@ -466,7 +466,7 @@
       <nav class="compliance-links">
         <button id="open-tos">服務條款</button>
         <button id="open-pp">隱私權政策</button>
-        <a href="mailto:xuanyuan.project@gmail.com">聯繫我們</a>
+        <a id="contact-link">聯繫我們</a>
       </nav>
     </div>
   </div>
@@ -562,7 +562,7 @@
 
         <h3>5. 使用者權利</h3>
         <p>
-          您可以透過 Discord 伺服器或來信 <strong>xuanyuan.project@gmail.com</strong> 聯繫我們，要求查詢、閱覽、補充、更正或刪除您的交易紀錄
+          您可以透過 Discord 伺服器或來信 <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6beb3a7a8bfb3a7a8e8b6b4a9aca3a5b286a1aba7afaae8a5a9ab">[email&#160;protected]</a></strong> 聯繫我們，要求查詢、閱覽、補充、更正或刪除您的交易紀錄
           （若刪除可能導致無法提供後續補發服務）。
         </p>
 
@@ -571,31 +571,45 @@
   </div>
 
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false">
+    // 動態插入聯繫連結，避免 Cloudflare email 混淆破壞 script
+    (function() {
+      var u = 'xuanyuan.project';
+      var d = 'gmail.com';
+      var el = document.getElementById('contact-link');
+      if (el) { el.href = 'mailto:' + u + '@' + d; }
+    })();
+
     // Open modals
-    document.getElementById('open-tos').addEventListener('click', e => {
-      e.preventDefault();
+    document.getElementById('open-tos').addEventListener('click', function() {
       document.getElementById('modal-tos').classList.add('open');
     });
-    document.getElementById('open-pp').addEventListener('click', e => {
-      e.preventDefault();
+    document.getElementById('open-pp').addEventListener('click', function() {
       document.getElementById('modal-pp').classList.add('open');
     });
 
     // Close buttons
-    document.querySelectorAll('.modal-close').forEach(btn => {
-      btn.addEventListener('click', () => {
+    document.querySelectorAll('.modal-close').forEach(function(btn) {
+      btn.addEventListener('click', function() {
         btn.closest('.modal-overlay').classList.remove('open');
       });
     });
 
     // Click outside to close
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', e => {
+    document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+      overlay.addEventListener('click', function(e) {
         if (e.target === overlay) overlay.classList.remove('open');
       });
     });
 
     // ESC to close
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escap
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(function(o) {
+          o.classList.remove('open');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
