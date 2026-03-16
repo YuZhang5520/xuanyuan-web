@@ -224,6 +224,64 @@
       margin: 0;
     }
 
+    /* ─── CONTACT BLOCK ─── */
+    .contact-block {
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(201,168,108,.1);
+    }
+
+    .contact-block > p {
+      font-size: .9rem;
+      color: var(--ash);
+      margin-bottom: 1.6rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      background: var(--veil);
+      border: 1px solid rgba(201,168,108,.12);
+      border-radius: 3px;
+      padding: .9rem 1.4rem;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .contact-icon {
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: .78rem;
+      color: var(--ash);
+      letter-spacing: .06em;
+      flex-shrink: 0;
+    }
+
+    .contact-value {
+      font-size: .88rem;
+      color: var(--gold2);
+      text-decoration: none;
+      margin-left: auto;
+      letter-spacing: .03em;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+
+    .contact-value:hover {
+      border-bottom-color: var(--gold2);
+    }
+
     /* ─── SEPARATOR ─── */
     .sep {
       border: none;
@@ -455,6 +513,23 @@
         <p>支付流程由綠界科技（ECPay）加密處理，保障每筆交易安全。</p>
       </div>
     </div>
+
+    <div class="contact-block">
+      <span class="section-label" style="margin-bottom:.6rem;">聯絡我們</span>
+      <p>若您有任何交易問題或系統異常，歡迎透過以下管道與我們聯繫，我們將於 24–48 小時內回覆。</p>
+      <div class="contact-row">
+        <div class="contact-item">
+          <span class="contact-icon">✉</span>
+          <span class="contact-label">客服信箱</span>
+          <a id="about-email-link" class="contact-value"></a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">◈</span>
+          <span class="contact-label">官方 Discord</span>
+          <a href="https://discord.gg/XShaGsRHmJ" target="_blank" rel="noopener" class="contact-value">discord.gg/XShaGsRHmJ</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <hr class="sep" />
@@ -584,6 +659,9 @@
 
       var p = document.getElementById('privacy-email-link');
       if (p) { p.href = href; p.textContent = email; }
+
+      var a = document.getElementById('about-email-link');
+      if (a) { a.href = href; a.textContent = email; }
     })();
 
     // Open modals
